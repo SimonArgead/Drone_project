@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>drone_sim</name>
+  <version>0.1.0</version>
+  <description>Simulation package for Zephyr drone over Sonoma Raceway</description>
+
+  <maintainer email="simon@todo.todo">Simon</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Build‐tool -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Byggetid-afhængigheder -->
+  <build_depend>rclcpp</build_depend>
+
+  <!-- Køretid-afhængigheder -->
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <!-- Hvis du bruger Ignition-controllers i dine launch-filer -->
+  <exec_depend>gz_ros2_control</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+
+  <!-- Testafhængigheder -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

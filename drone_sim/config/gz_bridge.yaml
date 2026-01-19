@@ -1,0 +1,83 @@
+- ros_topic_name: "/clock"
+  gz_topic_name: "/world/sonoma_raceway/clock"
+  ros_type_name: "rosgraph_msgs/msg/Clock"
+  gz_type_name: "gz.msgs.Clock"
+  direction: GZ_TO_ROS
+
+- ros_topic_name: "/zephyr/camera_right/image_raw"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/camera_right/sensor/camera/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/camera_right/camera_info"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/camera_right/sensor/camera/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/camera_left/image_raw"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/camera_left/sensor/camera/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/camera_left/camera_info"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/camera_left/sensor/camera/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/imu/data"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/base_link/sensor/imu_sensor/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  direction: GZ_TO_ROS
+  lazy: false
+
+- ros_topic_name: "/zephyr/gps/fix"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/base_link/sensor/gps_sensor/navsat"
+  ros_type_name: "sensor_msgs/msg/NavSatFix"
+  gz_type_name: "gz.msgs.NavSat"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/gps/vel"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/base_link/sensor/gps_sensor/velocity"
+  ros_type_name: "geometry_msgs/msg/TwistStamped"
+  gz_type_name: "gz.msgs.Twist"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/barometer"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/link/base_link/sensor/barometer_sensor/pressure"
+  ros_type_name: "sensor_msgs/msg/FluidPressure"
+  gz_type_name: "gz.msgs.FluidPressure"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- gz_topic_name: "/zephyr/magnetometer"
+  ros_topic_name: "/zephyr/magnetometer"
+  ros_type_name: "sensor_msgs/msg/MagneticField"
+  gz_type_name: "gz.msgs.Magnetometer"
+  direction: GZ_TO_ROS
+  lazy: true
+
+- ros_topic_name: "/zephyr/odom"
+  gz_topic_name: "/world/sonoma_raceway/model/zephyr_delta_wing/odometry"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  direction: GZ_TO_ROS
+  lazy: false
+
+
+# Du kan tilføje flere topics her
+# - ros_topic_name: "/scan"
+#   gz_topic_name: "/world/sonoma_raceway/scan"
+#   ros_type_name: "sensor_msgs/msg/LaserScan"
+#   gz_type_name: "gz.msgs.LaserScan"
+#   direction: GZ_TO_ROS
