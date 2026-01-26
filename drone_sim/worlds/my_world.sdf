@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <world name="my_world">
+
+    <!-- Geographic coordinates for magnetometer -->
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>56.1629</latitude_deg>
+      <longitude_deg>10.2039</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <!-- Physics -->
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+
+    <!-- Scene broadcaster (GUI) -->
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+
+    <!-- Ground plane -->
+    <model name="ground">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>  
+
+    <!-- Spawn Zephyr Delta Wing -->
+    <include>
+      <uri>model://zephyr_delta_wing</uri>
+      <pose>0 0 0 0 0 0</pose> <!-- x y z roll pitch yaw -->
+    </include>
+
+  </world>
+</sdf>

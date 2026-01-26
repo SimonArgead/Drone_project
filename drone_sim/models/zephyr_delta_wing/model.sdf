@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+<sdf version="1.10">
+  <model name="zephyr_delta_wing">
+    <pose>0 0 0 0 0 0</pose>
+    <static>false</static>
+
+    <!-- Base link and sensors -->
+    <link name="base_link">
+      <inertial>
+        <pose>0 -0.12 0 0 0 0</pose>
+        <mass>1.5</mass>
+        <inertia>
+          <ixx>0.083137104</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.387382402</iyy>
+          <iyz>0</iyz>
+          <izz>0.469845106</izz>
+        </inertia>
+      </inertial>
+
+      <visual name="base_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://zephyr_delta_wing/meshes/wing.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+
+      <collision name="base_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://zephyr_delta_wing/meshes/wing.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <collision name="right_rudder_collision">
+        <pose>-0.76435 0.33918 0.002 -0.03 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.005 0.12993 0.12688</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <collision name="left_rudder_collision">
+        <pose>0.76435 0.33918 0.002 -0.03 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.005 0.12993 0.12688</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <!-- Barometer -->
+      <sensor name="barometer_sensor" type="air_pressure">
+        <always_on>true</always_on>
+        <update_rate>20</update_rate>
+
+        <plugin
+          filename="gz-sim-air-pressure-system"
+          name="gz::sim::systems::AirPressure">
+          <topic>/air_pressure</topic>
+        </plugin>
+      </sensor>
+
+      <!-- GPS -->
+      <sensor name="gps_sensor" type="navsat">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <topic>navsat</topic>
+        <navsat/>
+      </sensor>
+
+      <!-- IMU -->
+      <sensor name="imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+
+        <plugin
+          filename="gz-sim-imu-system"
+          name="gz::sim::systems::Imu">
+          <topic>/imu</topic>
+        </plugin>
+      </sensor>
+
+      <!-- Magnetometer -->
+      <sensor name="magnetometer_sensor" type="magnetometer">
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+
+        <plugin
+          filename="gz-sim-magnetometer-system"
+          name="gz::sim::systems::Magnetometer">
+          <topic>/magnetometer</topic>
+        </plugin>
+      </sensor>
+    </link>
+
+    <!-- PROPELLER LINK -->
+    <link name="propeller">
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>0.000367571</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00036985</iyy>
+          <iyz>0</iyz>
+          <izz>0.000003187</izz>
+        </inertia>
+      </inertial>
+
+      <visual name="propeller_visual">
+        <geometry>
+          <cylinder>
+            <length>0.01</length>
+            <radius>0.05</radius>
+          </cylinder>
+        </geometry>
+      </visual>
+
+      <collision name="blade1">
+        <pose>0 0 0.074205 0 0 0.3</pose>
+        <geometry>
+          <box>
+            <size>0.02561 0.00541 0.14841</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <collision name="blade2">
+        <pose>0 0 -0.074205 0 0 -0.3</pose>
+        <geometry>
+          <box>
+            <size>0.02561 0.00541 0.14841</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- FLAPS -->
+    <link name="flap_left">
+      <inertial>
+        <pose>0 0 0 0 0 0.32445671</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000102319</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00334417</iyy>
+          <iyz>0</iyz>
+          <izz>0.003446072</izz>
+        </inertia>
+      </inertial>
+      <visual name="flap_left_visual">
+        <geometry>
+          <box>
+            <size>0.6 0.1 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="flap_left_collision">
+        <pose>-0.01 0.01 0 0 0 0.32445671</pose>
+        <geometry>
+          <box>
+            <size>0.633463031 0.110694312 0.005</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="flap_right">
+      <inertial>
+        <pose>0 0 0 0 0 -0.32445671</pose>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.000102319</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00334417</iyy>
+          <iyz>0</iyz>
+          <izz>0.003446072</izz>
+        </inertia>
+      </inertial>
+      <visual name="flap_right_visual">
+        <geometry>
+          <box>
+            <size>0.6 0.1 0.01</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="flap_right_collision">
+        <pose>0.01 0.01 0 0 0 -0.32445671</pose>
+        <geometry>
+          <box>
+            <size>0.633463031 0.110694312 0.005</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Cameras -->
+    <link name="camera_left_link">
+      <visual name="camera_left_visual">
+        <geometry>
+          <box>
+            <size>0.03 0.03 0.03</size>
+          </box>
+        </geometry>
+      </visual>
+      <sensor name="camera_left" type="camera">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <topic>camera_left</topic>
+        <camera>
+          <horizontal_fov>1.047</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>
+      </sensor>
+    </link>
+
+    <link name="camera_right_link">
+      <visual name="camera_right_visual">
+        <geometry>
+          <box>
+            <size>0.03 0.03 0.03</size>
+          </box>
+        </geometry>
+      </visual>
+      <sensor name="camera_right" type="camera">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <topic>camera_right</topic>
+        <camera>
+          <horizontal_fov>1.047</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>100</far>
+          </clip>
+        </camera>
+      </sensor>
+    </link>
+
+    <!-- JOINTS -->
+    <joint name="propeller_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>propeller</child>
+      <pose>0 0.07 0.008 0 1.5707 0</pose>
+      <axis>
+        <xyz>0 -1 0</xyz> <!-- original: <xyz>0 -1 0</xyz> -->
+        <dynamics>
+          <damping>0.002</damping>
+        </dynamics>
+        <limit>
+          <effort>50.0</effort> <!-- reduce to 10 or 1? -->
+          <velocity>300.0</velocity> <!-- reduce to 100? -->
+        </limit>
+      </axis>
+    </joint>
+
+    <joint name="flap_left_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>flap_left</child>
+      <pose>0.4530 0.239 0.007 0 0 0</pose>
+      <axis>
+        <xyz>1 0.330321014 0</xyz>
+        <limit>
+          <lower>-0.524</lower>
+          <upper>0.524</upper>
+          <effort>1.0</effort>
+          <velocity>1.0</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name="flap_right_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>flap_right</child>
+      <pose>-0.4530 0.239 0.007 0 0 0</pose>
+      <axis>
+        <xyz>1 -0.330321014 0</xyz>
+        <limit>
+          <lower>-0.524</lower>
+          <upper>0.524</upper>
+          <effort>1.0</effort>
+          <velocity>1.0</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.1</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <joint name="camera_left_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>camera_left_link</child>
+      <pose>0 0.05 0.1 0 0 0</pose>
+    </joint>
+
+    <joint name="camera_right_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>camera_right_link</child>
+      <pose>0 -0.05 0.1 0 0 0</pose>
+    </joint>
+
+    <!-- Joint controller plugins -->
+    <plugin name="gz::sim::systems::JointController" filename="libgz-sim8-joint-controller-system">
+      <joint_name>propeller_joint</joint_name>
+      <velocity_topic>/model/zephyr_delta_wing/joint/propeller_joint/cmd_vel</velocity_topic>
+    </plugin>
+
+    <!-- Aerodynamics -->
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.13</a0>
+      <cla>3.7</cla>
+      <cda>0.06417</cda>
+      <cma>-1.8</cma>
+      <alpha_stall>0.33914</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9234</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0 -0.1 0</cp>
+      <area>0.50</area>
+      <air_density>1.2041</air_density>
+      <forward>0 -1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+    </plugin>
+
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.15</a0>
+      <cla>6.8</cla>
+      <cda>0.06417</cda>
+      <cma>-1.8</cma>
+      <alpha_stall>0.63914</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9234</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0.7 0.20 0</cp>
+      <area>0.10</area>
+      <air_density>1.2041</air_density>
+      <forward>0 -1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>flap_left_joint</control_joint_name>
+      <control_joint_rad_to_cl>-5.0</control_joint_rad_to_cl>
+    </plugin>
+
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.15</a0>
+      <cla>6.8</cla>
+      <cda>0.06417</cda>
+      <cma>-1.8</cma>
+      <alpha_stall>0.63914</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9234</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.7 0.20 0</cp>
+      <area>0.10</area>
+      <air_density>1.2041</air_density>
+      <forward>0 -1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>flap_right_joint</control_joint_name>
+      <control_joint_rad_to_cl>-5.0</control_joint_rad_to_cl>
+    </plugin>
+
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.0</a0>
+      <cla>4.7528</cla>
+      <cda>0.6417</cda>
+      <cma>-1.8</cma>
+      <alpha_stall>0.33914</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9234</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.76 0.30 0</cp>
+      <area>0.12</area>
+      <air_density>1.2041</air_density>
+      <forward>0 -1 0</forward>
+      <upward>1 0 0</upward>
+      <link_name>base_link</link_name>
+    </plugin>
+
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.0</a0>
+      <cla>4.7528</cla>
+      <cda>0.6417</cda>
+      <cma>-1.8</cma>
+      <alpha_stall>0.33914</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9234</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0.76 0.30 0</cp>
+      <area>0.12</area>
+      <air_density>1.2041</air_density>
+      <forward>0 -1 0</forward>
+      <upward>1 0 0</upward>
+      <link_name>base_link</link_name>
+    </plugin>
+
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.30</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.25</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.02</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 0.074205</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 -1 0</upward>
+      <link_name>propeller</link_name>
+    </plugin>
+
+    <plugin name="gz::sim::systems::LiftDrag" filename="libgz-sim8-lift-drag-system">
+      <a0>0.30</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.25</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.02</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 -0.074205</cp>
+      <forward>1 0 0</forward>
+      <upward>0 -1 0</upward>
+      <link_name>propeller</link_name>
+    </plugin>
+
+    <!-- Odometry Publisher -->
+    <plugin name="gz::sim::systems::OdometryPublisher" filename="libgz-sim8-odometry-publisher-system">
+      <odom_topic>/world/my_world/model/zephyr_delta_wing/odometry</odom_topic>
+      <frame_id>base_link</frame_id>
+      <child_frame_id>odom</child_frame_id>
+    </plugin>
+
+  </model>
+</sdf>
