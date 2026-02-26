@@ -1,4 +1,1 @@
-Package nav_pkg contains a first draft for a autopilot. At the projects current stage, the drone is... All over the place. Autopilot not doing a very good job at getting the drone in the air. One step at a time though.
-
-To do:
-add sensor noise. Slight white gaussian noise.
+Package nav_pkg contains a first draft for a simple autopilot. At the projects current stage, fixed the issue with the drone flying uncontroled, randomly, along the ground. Drone is now flat on the ground with the propeller spinning at full speed. Seems an issue with either a missing plugin (hypothesis: no thrust is generated). Or an issue with the world file (hypothesis: no wind simulation -> no thrust from the propeller). Another problem could be: propeller spinning the wrong way? So the propeller is pulling instead of pushing?
